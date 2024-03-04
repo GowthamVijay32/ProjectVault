@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" id="name" /></td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td><input type="number" id="age" /></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>
+          <input type="radio" id="male" value="male" name="gender" /><label
+            for="male"
+            >Male</label
+          >
+          <input type="radio" id="female" value="female" name="gender" /><label
+            for="female"
+            >Female</label
+          >
+        </td>
+      </tr>
+      <tr>
+        <td>Course</td>
+        <td>
+          <select name="course" id="course">
+            <option value="javascript">JavaScript</option>
+            <option value="css">CSS</option>
+            <option value="html">HTML</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td><input type="email" id="email" /></td>
+      </tr>
+      <tr>
+        <td><button onclick="save()">Save</button></td>
+      </tr>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th>AGE</th>
+          <th>COURSE</th>
+          <th>GENDER</th>
+          <th>EMAIL</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
+
+    <script>
+      function save() {
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        let course = document.getElementById("course").value;
+        let mail = document.getElementById("email").value;
+        console.log({ name, age, gender, course, mail });
+
+        let listItem = document.createElement("tr");
+        listItem.innerHTML = `<td>${name}</td><td>${age}</td><td>${course}</td><td>${gender}</td><td>${mail}</td><td><button onclick="erase(event)">Delete</button></td>`;
+
+        document.getElementById("list").append(listItem);
+      }
+
+      function erase(event) {
+        event.target.parentElement.parentElement.remove();
+      }
+    </script>
+  </body>
+</html>
